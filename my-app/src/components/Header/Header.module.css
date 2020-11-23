@@ -1,0 +1,19 @@
+.header {
+  grid-area: h;
+  background-color: aqua;
+
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  }
+
+  .header img {
+    width: 60px;
+  }
+
+  .logoName {
+    color: rgb(91, 148, 148);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+    padding: 5px;
+    text-shadow: rgb(255, 254, 254);
+  }

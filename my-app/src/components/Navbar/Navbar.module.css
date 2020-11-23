@@ -1,0 +1,15 @@
+.nav {
+  grid-area: n;
+  background-color: darkcyan;
+  padding: 10px;
+  
+}
+
+.item a {
+  color: azure;
+  text-decoration: none;
+}
+
+.item a.activeLink {
+  color: rgb(48, 46, 46);
+}

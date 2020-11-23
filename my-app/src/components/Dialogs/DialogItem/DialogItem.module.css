@@ -1,0 +1,9 @@
+
+.dialog a {
+  color: azure;
+  text-decoration: none;
+}
+
+.dialog a.active {
+    color: rgb(25, 26, 26);
+}
