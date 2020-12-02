@@ -6,7 +6,7 @@ const ProfileInfo = () => {
   return (
     <div className={c.tape}>
       <div >
-        <img className={c.img} src='https://media.djnetworks.net/media/static/dj-includes/images/brand/2018/02/bb-reason.jpg'></img>
+        <img className={c.img} src='/img/profile-cycle.png'></img>
       </div>
       <div className={c.descriptionBloc}>
         Ava + description

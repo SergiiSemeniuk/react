@@ -8,7 +8,7 @@
   "f f";
 
   grid-template-rows: 60px 1fr 60px;
-  grid-template-columns: 100px 10fr;
+  grid-template-columns: 150px 10fr;
   grid-gap: 5px;
   background-color: rgb(212, 211, 211);
 }

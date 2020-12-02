@@ -4,7 +4,7 @@ import c from './Header.module.css';
 const Header = () => {
   return (
     <header className={c.header}>
-      <img src='https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png'></img>
+      <img src='https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png' alt='logo'></img>
       <div className={c.logoName}>
         ReaSoN
     </div>

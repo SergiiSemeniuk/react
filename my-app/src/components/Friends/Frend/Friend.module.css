@@ -1,0 +1,13 @@
+.friends {
+    margin-left: 10%;
+    margin-right: auto
+}
+
+.friends img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30%;
+    margin-left: 10%;
+    margin-right: auto
+    
+}

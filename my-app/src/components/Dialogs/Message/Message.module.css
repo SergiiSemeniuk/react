@@ -1,3 +1,10 @@
 .message {
     color:  rgb(25, 26, 26);
 }
+
+.message img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30%;
+    margin-right: 10px;
+}

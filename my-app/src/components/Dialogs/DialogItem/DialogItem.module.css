@@ -1,4 +1,7 @@
-
+.item {
+  display: inline-flex;
+  
+}
 .dialog a {
   color: azure;
   text-decoration: none;
@@ -6,4 +9,11 @@
 
 .dialog a.active {
     color: rgb(25, 26, 26);
+}
+
+.item img {
+  width: 30px;
+  height: 30px;
+  border-radius: 30%;
+  margin-right: 10px;
 }

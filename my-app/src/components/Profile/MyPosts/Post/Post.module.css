@@ -7,3 +7,7 @@
   height: 50px;
   border-radius: 30%;
 }
+
+.like {
+  color: rgba(214, 26, 26, 0.61);
+}

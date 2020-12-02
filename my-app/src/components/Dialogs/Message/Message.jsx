@@ -3,11 +3,17 @@ import c from './Message.module.css';
 
 
 
-const Message = (props) => {
+const Message =   (props) => {
+ 
+
   return (
-    <div className={c.message}>{props.message}</div>
+    <div className={c.message} >
+      <img src='https://pixelbox.ru/wp-content/uploads/2018/02/anonymous_steam_avatars-1-1.jpg' alt="ava"/>
+      {props.message}
+    </div>
   )
 }
+
 
 
 
