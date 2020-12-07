@@ -9,7 +9,7 @@ const Profile = (props) => {
   return (
     <div className={c.tape}>
       <ProfileInfo />
-      <MyPosts posts={props.state.posts} addPost={props.addPost} newPostText={props.state.newPostText} onTextChange={props.onTextChange}/>
+      <MyPosts posts={props.state.posts} newPostText={props.state.newPostText} dispatch={props.dispatch}/>
     </div>
   )
 }

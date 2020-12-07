@@ -1,23 +1,24 @@
+import { addMessageActionCreator, changeNewMessageTextActionCreator } from '../../../redux/dialogsReducer';
 import React from 'react';
 import c from './NewMessage.module.css';
 
 
+
 const NewMessage = (props) => {
 
-  let newMessageElement = React.createRef();
 
   let addMessage = () => {
-    props.addMessage();
+    props.dispatch(addMessageActionCreator());
   }; 
 
-  let changeNewMessageText = () => {
-    let text = newMessageElement.current.value;
-    props.changeNewMessageText (text);
+  let changeNewMessageText = (e) => {
+    let text = e.target.value;
+    props.dispatch(changeNewMessageTextActionCreator(text));
   }
 
   return (
     <div className={c.messageArea}>
-      <textarea ref={newMessageElement} onChange={changeNewMessageText} value={props.newMessageText} ></textarea>
+      <textarea onChange={changeNewMessageText} value={props.newMessageText} ></textarea>
       <div>
         <button onClick={addMessage}>Send message</button>
       </div>
