@@ -1,0 +1,41 @@
+.usersPage {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+    outline: 2px solid rgb(212, 211, 211);
+}
+
+.userProfile{
+    align-items: center;
+    padding-left: 30%;
+
+}
+
+.userProfile img {
+    width: 80px;
+}
+
+
+.userInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;   
+    outline: 2px solid rgb(24, 24, 24);
+    width: 600px;	height: auto;  
+    
+}
+
+.userInfo .userStatus {
+    padding-top: 10%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+}
+
+.userInfo .userName {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+}
+
+.selectedPage{
+    font-weight: bold;
+}
