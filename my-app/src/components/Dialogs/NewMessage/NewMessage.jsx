@@ -1,5 +1,5 @@
 import React from 'react';
-import c from './NewMessage.module.css';
+import style from './NewMessage.module.css';
 
 
 
@@ -16,7 +16,7 @@ const NewMessage = (props) => {
   }
 
   return (
-    <div className={c.messageArea}>
+    <div className={style.messageArea}>
       <textarea onChange={onChangeNewMessageText} value={props.newMessageText} ></textarea>
       <div>
         <button onClick={onAddMessage}>Send message</button>

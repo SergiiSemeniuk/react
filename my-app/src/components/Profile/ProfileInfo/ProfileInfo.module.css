@@ -7,6 +7,20 @@
 
 .descriptionBloc {
     padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 10fr 10fr;
+}
+
+.userInfo {
+    padding: 10px;
+}
+
+.userName {
+    font-size:x-large;
+}
+
+.userPhoto {
+    width: 200px;
 }
 
 

@@ -3,7 +3,7 @@
   background-color: aqua;
 
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 10fr 1fr;
   }
 
   .header img {
@@ -16,4 +16,18 @@
     font-size: 40px;
     padding: 5px;
     text-shadow: rgb(255, 254, 254);
+  }
+
+  .loginBlock {
+    float: right;
+   
+  }
+
+  .loginBlock a {
+    color: rgb(91, 148, 148);
+  }
+
+  .loginUserBlock {
+    display: flex;
+    
   }
