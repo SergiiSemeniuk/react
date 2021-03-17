@@ -14,7 +14,8 @@ const Header = (props) => {
       <div className={style.loginBlock}>
         {props.isAuth ?
           <div className={style.loginUserBlock}>
-            <div>{props.login}</div>
+            <NavLink to={`/profile/${props.usersId}`} >{props.login}</NavLink>
+           
             <img src={props.usersPhoto != null ? props.usersPhoto : userPhoto} alt='userPhoto'></img>
           </div>
           : <NavLink to={'/login'} >Login</NavLink>

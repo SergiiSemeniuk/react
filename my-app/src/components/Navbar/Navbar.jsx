@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import FriendsContainer from '../Friends/FriendsContainer';
 import style from './Navbar.module.css';
@@ -6,7 +7,7 @@ import style from './Navbar.module.css';
 const Navbar = (props) => {
     return <nav className={style.nav}>
     <div className={style.item}>
-      <NavLink to='/profile' activeClassName={style.activeLink}>Profile</NavLink>
+      <NavLink to={`/profile/${props.usersId}`} activeClassName={style.activeLink}>Profile</NavLink>
     </div>
     <div className={style.item}>
       <NavLink to='/dialogs' activeClassName={style.activeLink}>Messages</NavLink>
@@ -28,5 +29,11 @@ const Navbar = (props) => {
 }
 
 
+let mapStateToProps = (state) => {
+  return {
+      usersId: state.auth.usersId
+  }
+}
 
-export default Navbar;
+
+export default connect(mapStateToProps, {}) (Navbar);
