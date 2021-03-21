@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/api";
+import { authAPI, usersAPI } from "../api/api";
 import { setUsersProfile } from "./profileReducer";
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -41,20 +41,20 @@ const authReducer = (state = initialState, action) => {
 export const setAuthUserData = (usersId, email, login) => ({ type: SET_USER_DATA, data: { usersId, email, login } });
 export const setAuthUserPhoto = (usersPhoto) => ({ type: SET_USER_PHOTO, usersPhoto });
 
-export const authUser = () => {
+export const getAuthUserData = () => {
     return (dispatch) => {
-        usersAPI.authMe().then(data => {
+        authAPI.me().then(data => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;
                 dispatch(setAuthUserData(id, email, login));
-
-                usersAPI.getProfile(id).then(data => {
-                    dispatch(setAuthUserPhoto(data.photos.small));
-                    dispatch(setUsersProfile(data));
-
-                })
-            }
-        })
+                return id;              
+            }            
+        }).then((id) => {
+            usersAPI.getProfile(id).then(data => {
+                dispatch(setAuthUserPhoto(data.photos.small));
+                dispatch(setUsersProfile(data));
+            })
+        } );
 
     }
 }
