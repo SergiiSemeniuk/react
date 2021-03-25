@@ -1,4 +1,4 @@
-import { authAPI, usersAPI } from "../api/api";
+import { authAPI, profileAPI } from "../api/api";
 import { setUsersProfile } from "./profileReducer";
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -50,7 +50,7 @@ export const getAuthUserData = () => {
                 return id;              
             }            
         }).then((id) => {
-            usersAPI.getProfile(id).then(data => {
+            profileAPI.getProfile(id).then(data => {
                 dispatch(setAuthUserPhoto(data.photos.small));
                 dispatch(setUsersProfile(data));
             })

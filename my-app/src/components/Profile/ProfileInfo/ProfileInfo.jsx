@@ -3,6 +3,7 @@ import style from './ProfileInfo.module.css';
 import profileImg from '../../../assets/images/profile-cycle.png'
 import Preloader from '../../common/preloader';
 import userPhoto from '../../../assets/images/user-icon.png';
+import ProfileStatus from './ProfileStatus';
 
 
 
@@ -12,17 +13,18 @@ const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />
   }
-
+ 
   return (
     <div className={style.tape}>
-      <div >
+      {/* <div >
         <img className={style.img} src={profileImg} />
-      </div>
+      </div> */}
       <div className={style.descriptionBloc}>
         <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}
           className={style.userPhoto} />
         <div className={style.userInfo}>
           <div className={style.userName}>{props.profile.fullName}</div>
+          <div><ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} /></div>
           <div>{props.profile.aboutMe}</div>
           <div>{props.profile.lookingForAJob ?
             <div>
