@@ -4,7 +4,7 @@ import './App.css';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Footer from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import LoginPage from './components/Login/login';
+import Login from './components/Login/Login';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
@@ -26,7 +26,7 @@ let App =(props) => {
         <Route path='/music' render={() => <Music />} />
         <Route path='/settings' render={() => <Settings />} />
         <Route path='/users' render={() => <UsersContainer />} />
-        <Route path='/login' render={() => <LoginPage />} />
+        <Route path='/login' render={() => <Login />} />
       </div>
       <Footer />
     </div>

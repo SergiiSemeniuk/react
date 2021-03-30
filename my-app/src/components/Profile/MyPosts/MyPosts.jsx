@@ -1,6 +1,9 @@
 import React from 'react';
 import c from './MyPosts.module.css';
 import Post from './Post/Post';
+import { connect } from 'react-redux';
+import { addNewPost } from '../../../redux/profileReducer';
+import MyPostsForm from './MyPostsForm';
 
 
 
@@ -10,28 +13,18 @@ const MyPosts = (props) => {
 
  
 
-  let onAddNewPost = () => {    
-    props.addNewPost();   
+  let onAddNewPost = (values) => {     
+    props.addNewPost(values.newMyPost);   
   };
   
-  let onPostChange = (e) => {
-    let text = e.target.value;
-    props.onPostChange(text);
-  };
-
-
+  
   return (
     <div className={c.postsBloc}>
       <div>
         <h3>My posts</h3>
       </div>
       <div>
-        <div>
-          <textarea onChange={onPostChange} value={props.newPostText}></textarea>
-        </div>
-        <div>
-          <button onClick={onAddNewPost}>Add new post</button>
-        </div>
+        <MyPostsForm onSubmit={onAddNewPost} />        
       </div>
       <div className={c.posts}>
         {postsElements}
@@ -40,4 +33,12 @@ const MyPosts = (props) => {
   )
 }
 
-export default MyPosts;
+let mapStateToProps = (state) => {
+  return {
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
+  }
+}
+
+
+export default connect(mapStateToProps, {addNewPost})(MyPosts);

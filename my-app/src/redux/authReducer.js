@@ -1,8 +1,10 @@
 import { authAPI, profileAPI } from "../api/api";
 import { setUsersProfile } from "./profileReducer";
+import { Redirect } from 'react-router';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
+const SET_FORM_DATA = 'SET_FORM_DATA';
 
 
 let initialState = {
@@ -11,7 +13,8 @@ let initialState = {
     login: null,
     isAuth: false,
     isFetching: false,
-    usersPhoto: null
+    usersPhoto: null,
+    formData: {}
 };
 
 const authReducer = (state = initialState, action) => {
@@ -26,11 +29,14 @@ const authReducer = (state = initialState, action) => {
                 isAuth: true
             };
         case SET_USER_PHOTO:
-
             return {
                 ...state,
-                usersPhoto: action.usersPhoto,
-
+                usersPhoto: action.usersPhoto
+            };
+            case SET_FORM_DATA:
+            return {
+                ...state,
+                formData: action.formData
             };
 
         default:
@@ -38,10 +44,12 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthUserData = (usersId, email, login) => ({ type: SET_USER_DATA, data: { usersId, email, login } });
+export const setAuthUserData = (usersId = null, email = null, login = null) => ({ type: SET_USER_DATA, data: { usersId, email, login } });
 export const setAuthUserPhoto = (usersPhoto) => ({ type: SET_USER_PHOTO, usersPhoto });
+export const setUserFormData = (formData) => ({ type: SET_FORM_DATA, formData });
 
 export const getAuthUserData = () => {
+  
     return (dispatch) => {
         authAPI.me().then(data => {
             if (data.resultCode === 0) {
@@ -55,7 +63,18 @@ export const getAuthUserData = () => {
                 dispatch(setUsersProfile(data));
             })
         } );
+    }
+}
 
+export const getAuthUserId = (formData) => {
+    return (dispatch) => {
+        authAPI.postLogin(formData).then(response => {
+            
+            if (response.data.resultCode === 0) {
+                
+                getAuthUserData();                    
+            }            
+        })
     }
 }
 
