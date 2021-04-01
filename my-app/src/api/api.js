@@ -36,12 +36,16 @@ export const authAPI = {
     },
     postLogin(formData) {
         return instance.post('auth/login', formData)
+    },
+    LogOut() {
+        return instance.delete('auth/login')
     }
 }
 
 export const profileAPI = {
 
     getProfile(userId) {
+       
         return instance.get(`profile/${userId}`)
             .then(response => response.data);
     },

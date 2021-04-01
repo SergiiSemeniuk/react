@@ -13,7 +13,8 @@ const MyPosts = (props) => {
 
  
 
-  let onAddNewPost = (values) => {     
+  let onAddNewPost = (values) => { 
+     
     props.addNewPost(values.newMyPost);   
   };
   

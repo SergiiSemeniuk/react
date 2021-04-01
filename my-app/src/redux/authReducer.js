@@ -1,10 +1,12 @@
-import { authAPI, profileAPI } from "../api/api";
-import { setUsersProfile } from "./profileReducer";
-import { Redirect } from 'react-router';
+import { authAPI} from "../api/api";
+
+
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
-const SET_FORM_DATA = 'SET_FORM_DATA';
+const IS_AUTH_USER = 'IS_AUTH_USER';
+
+
 
 
 let initialState = {
@@ -33,11 +35,13 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 usersPhoto: action.usersPhoto
             };
-            case SET_FORM_DATA:
+            case IS_AUTH_USER:
             return {
                 ...state,
-                formData: action.formData
+                isAuth: action.isAuth,
+                usersId: action.id
             };
+           
 
         default:
             return state;
@@ -46,7 +50,8 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (usersId = null, email = null, login = null) => ({ type: SET_USER_DATA, data: { usersId, email, login } });
 export const setAuthUserPhoto = (usersPhoto) => ({ type: SET_USER_PHOTO, usersPhoto });
-export const setUserFormData = (formData) => ({ type: SET_FORM_DATA, formData });
+export const isAuthUser = (isAuth, id) => ({ type: IS_AUTH_USER, isAuth, id  });
+
 
 export const getAuthUserData = () => {
   
@@ -55,24 +60,31 @@ export const getAuthUserData = () => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;
                 dispatch(setAuthUserData(id, email, login));
-                return id;              
+                             
             }            
-        }).then((id) => {
-            profileAPI.getProfile(id).then(data => {
-                dispatch(setAuthUserPhoto(data.photos.small));
-                dispatch(setUsersProfile(data));
-            })
-        } );
+        })
     }
 }
 
 export const getAuthUserId = (formData) => {
     return (dispatch) => {
-        authAPI.postLogin(formData).then(response => {
-            
+        authAPI.postLogin(formData).then(response => {            
             if (response.data.resultCode === 0) {
-                
-                getAuthUserData();                    
+               
+                dispatch(isAuthUser(true, response.data.data.userId));
+               
+            }            
+        })
+           
+        
+    }
+}
+
+export const logOutUser = () => {
+    return (dispatch) => {
+        authAPI.LogOut().then(response => {            
+            if (response.data.resultCode === 0) {
+                dispatch(isAuthUser(false));                
             }            
         })
     }
