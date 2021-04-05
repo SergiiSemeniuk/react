@@ -34,11 +34,14 @@ export const authAPI = {
         return instance.get(`auth/me`)
             .then(response => response.data);
     },
-    postLogin(formData) {
-        return instance.post('auth/login', formData)
+    login(formData) {
+        return instance.post('auth/login', formData);
     },
     LogOut() {
-        return instance.delete('auth/login')
+        return instance.delete('auth/login');
+    },
+    securityCaptcha(){
+        return instance.get(`security/get-captcha-url`);
     }
 }
 
@@ -50,10 +53,10 @@ export const profileAPI = {
             .then(response => response.data);
     },
     getStatus(userId) {
-        return instance.get(`profile/status/${userId}`)
+        return instance.get(`profile/status/${userId}`);
     },
     updateStatus(status) {
-        return instance.put(`/profile/status`, {status})
+        return instance.put(`/profile/status`, {status});
     }
 
 }

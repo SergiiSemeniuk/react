@@ -8,3 +8,9 @@ border: solid red 2px;
 {
 color: red;
 }
+
+.formCommonError {
+    color: red;
+    border: solid red 2px;
+    padding: 5px;
+}
