@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Header.module.css';
 import userPhoto from '../../assets/images/user-icon.png';
+import Preloader from '../common/preloader';
 
 const Header = (props) => {
 
@@ -12,13 +13,13 @@ const Header = (props) => {
         ReaSoN
     </div>
       <div className={style.loginBlock}>
-        {props.isAuth
+        {props.isAuth && props.profile
           ? <div className={style.loginUserBlock}>
             <div>
-            <NavLink to={`/profile/${props.usersId}`} > {props.login} </NavLink>
+            <NavLink to={`/profile/${props.usersId}`} > {props.profile.fullName} </NavLink>
             <button  onClick={() => props.logOutUser()}>Logout</button></div>
             
-            <img src={props.usersPhoto != null ? props.usersPhoto : userPhoto} alt='userPhoto'></img>
+            <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} alt='userPhoto'></img>
             </div>
           : <NavLink to={'/login'} >Login</NavLink>
         }

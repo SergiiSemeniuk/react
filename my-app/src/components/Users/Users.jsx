@@ -4,10 +4,10 @@ import userPhoto from '../../assets/images/user-icon.png';
 import { NavLink } from 'react-router-dom';
 
 let Users = (props) => {
-
+debugger
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    for (let i = 1; i <= pagesCount/100; i++) { 
+    for (let i = 1; i <= pagesCount / 100; i++) {
         pages.push(i);
     }
 
@@ -29,15 +29,18 @@ let Users = (props) => {
                                 <img src={u.photos.small != null ? u.photos.small : userPhoto} className={style.usersAvatar} />
                             </NavLink>
                         </div>
-                        <div className={style.followButton} >
-                            {u.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === u.id) } onClick={() => {
-                                    props.unfollow(u.id) }} >UnFollow</button>
-                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                    props.follow(u.id) }} >Follow</button>
-                            }
-
-                        </div>
+                        {props.isAuth
+                            ? <div className={style.followButton} >
+                                {u.followed
+                                    ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                        props.unfollow(u.id)
+                                    }} >UnFollow</button>
+                                    : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                        props.follow(u.id)
+                                    }} >Follow</button>
+                                }
+                            </div>
+                            : <div></div>}
                     </div>
                     <div className={style.userInfo} >
                         <div>
