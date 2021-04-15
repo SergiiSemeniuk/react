@@ -12,8 +12,8 @@ const instance = axios.create({
 
 export const usersAPI = {
 
-    getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+    getUsers(currentPage = 1, pageSize = 10, friend = null) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}&friend=${friend}`)
             .then(response => response.data);
     },
 
@@ -40,7 +40,7 @@ export const authAPI = {
     LogOut() {
         return instance.delete('auth/login');
     },
-    securityCaptcha(){
+    securityCaptcha() {
         return instance.get(`security/get-captcha-url`);
     }
 }
@@ -48,7 +48,6 @@ export const authAPI = {
 export const profileAPI = {
 
     getProfile(userId) {
-       
         return instance.get(`profile/${userId}`)
             .then(response => response.data);
     },
@@ -56,7 +55,11 @@ export const profileAPI = {
         return instance.get(`profile/status/${userId}`);
     },
     updateStatus(status) {
-        return instance.put(`/profile/status`, {status});
+        return instance.put(`/profile/status`, { status });
+    },
+    isFollowedUser(userId) {
+        return instance.get(`follow/${userId}`)
+            .then(response => response.data);
     }
 
 }

@@ -1,69 +1,62 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
-import profileImg from '../../../assets/images/profile-cycle.png'
 import Preloader from '../../common/preloader';
 import userPhoto from '../../../assets/images/user-icon.png';
 import ProfileStatus from './ProfileStatus';
+import Contacts from './Contacts';
+import FollowUnfollowButton from '../../common/Button/FollowUnfollowButton';
+import UserPhoto from '../../common/UserPhoto/UserPhoto';
 
 
+const ProfileInfo = ({ profile, isAuth, status, updateUserStatus, pathUserId, authorizedUserId,
+  isFollowed, unfollow, follow, followingInProgress }) => {
 
-const ProfileInfo = (props) => {
 
-
-  if (!props.profile) {
+  if (!profile) {
     return <Preloader />
   }
- 
+
   return (
     <div className={style.tape}>
-      {/* <div >
-        <img className={style.img} src={profileImg} />
-      </div> */}
       <div className={style.descriptionBloc}>
-        <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}
-          className={style.userPhoto} />
+        <div>
+          <UserPhoto userPhoto={profile.photos.large} />
+          <div className={style.followButton}>
+            {pathUserId == authorizedUserId || isAuth && authorizedUserId && !pathUserId
+              ? <div></div>
+              : <FollowUnfollowButton isAuth={isAuth} isFollowed={isFollowed}
+                userId={profile.userId} followingInProgress={followingInProgress}
+                unfollow={unfollow}
+                follow={follow}
+                pathUserId={pathUserId}
+                authorizedUserId={authorizedUserId} />
+            }
+          </div>
+        </div>
         <div className={style.userInfo}>
-          <div className={style.userName}>{props.profile.fullName}</div>
-          <div><ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} /></div>
-          <div>{props.profile.aboutMe}</div>
-          <div>{props.profile.lookingForAJob ?
-            <div>
-              <div>looking for a job </div>
+          <div className={style.userName}>{profile.fullName}</div>
+          <div><ProfileStatus isAuth={isAuth} status={status}
+            updateUserStatus={updateUserStatus} pathUserId={pathUserId}
+            authorizedUserId={authorizedUserId}
+          />
+          </div>
+          <div>{profile.aboutMe}</div>
+          <div>{profile.lookingForAJob ?
+            <div className={style.lookingJobBloc}>
+              <div>{profile.lookingForAJobDescription}</div>
               <img src='https://image.flaticon.com/icons/png/128/2890/2890347.png' />
-              <div>{props.profile.lookingForAJobDescription}</div>
             </div> : null}
           </div>
         </div>
-
-        <div> Contacts:
-          <div>
-            {props.profile.contacts.facebook}
-          </div>
-          <div>
-            {props.profile.contacts.website}
-          </div>
-          <div>
-            {props.profile.contacts.vk}
-          </div>
-          <div>
-            {props.profile.contacts.twitter}
-          </div>
-          <div>
-            {props.profile.contacts.instagram}
-          </div>
-          <div>
-            {props.profile.contacts.youtube}
-          </div>
-          <div>
-            {props.profile.contacts.github}
-          </div>
-          <div>
-            {props.profile.contacts.mainLink}
-          </div>
+        <div>
+          <Contacts contacts={profile.contacts} />
         </div>
       </div>
     </div>
+
   )
 }
 
 export default ProfileInfo;
+
+

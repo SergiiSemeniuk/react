@@ -3,6 +3,7 @@
     grid-template-columns: 2fr 10fr;
     padding: 10px;
     outline: 2px solid rgb(212, 211, 211);
+    
 }
 
 .userProfile{
@@ -36,8 +37,6 @@
     font-size: x-large;
 }
 
-.selectedPage{
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px;
+.followButton {
+    margin-left: -10%;
 }

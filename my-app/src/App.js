@@ -15,6 +15,7 @@ import { initializeApp } from "./../src/redux/appReducer";
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Preloader from './components/common/preloader';
+import Friends from './components/Friends/Friends';
 
 
 class App extends React.Component {
@@ -40,6 +41,7 @@ class App extends React.Component {
           <Route path='/settings' render={() => <Settings />} />
           <Route path='/users' render={() => <UsersContainer />} />
           <Route path='/login' render={() => <Login />} />
+          <Route path='/friends' render={() => <Friends />} />
         </div>
         <Footer />
       </div>

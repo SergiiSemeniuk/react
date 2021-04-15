@@ -1,60 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
-class ProfileStatus extends React.Component {
+let ProfileStatus = (props) => {
 
-  state = {
-    editMode: false,
-    status: this.props.status
+  let [editMode, setEditMode] = useState(false);
+  let [status, setStatus] = useState(props.status);
+
+
+  let activateMode = () => {
+    setEditMode(true);
   }
 
-  activateMode = () => {
-
-    this.setState({
-      editMode: true
-    })
+  let deActivateMode = () => {
+    setEditMode(false);
+    props.updateUserStatus(status);
   }
 
-  deActivateMode = () => {
-    this.setState({
-      editMode: false
-    });
-    this.props.updateUserStatus(this.state.status);
+  let onStatusChange = (e) => {
+    setStatus(e.currentTarget.value);
   }
 
-  onStatusChange = (e) => {
-    this.setState({
-      status: e.currentTarget.value
-    });
+  useEffect(() => {
+    
+    setStatus(props.status)
+  }, [props.status])
 
-  }
+  return (
 
-  componentDidUpdate (prevProps, prevState) {
- 
-    if(this.props.status !== prevProps.status){
-      this.setState({
-        status: this.props.status
-      })
-    }
-  }
-
-  render() {
-
-    return (
-
-      <div>
-        {!this.state.editMode ?
-          <div>
-            <span onDoubleClick={this.activateMode} >{this.props.status || '----'}</span>
-          </div>
-          : <div>
-            <input onChange={this.onStatusChange} value={this.state.status} onBlur={this.deActivateMode} autoFocus={true} />
-          </div>
-        }
-      </div>
-    )
-  }
+    <div>
+      {!editMode ?
+        <div>
+          {(!props.isAuth || props.pathUserId != props.authorizedUserId)
+          ? <span >{props.status || '----'}</span>
+          : <span onClick={activateMode} >{props.status || '----'}</span>
+          }
+         
+        </div>
+        : <div>
+          <input onChange={onStatusChange} value={status} onBlur={deActivateMode} autoFocus={true} />
+        </div>
+      }
+    </div>
+  )
 }
+
 
 export default ProfileStatus;

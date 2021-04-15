@@ -8,24 +8,20 @@ import MyPostsForm from './MyPostsForm';
 
 
 const MyPosts = (props) => {
-
+ 
   let postsElements = props.posts.map(el => <Post message={el.message} likeCount={el.likesCount} key={el.id} />);
 
- 
-
-  let onAddNewPost = (values) => { 
-     
-    props.addNewPost(values.newMyPost);   
+  let onAddNewPost = (values) => {
+    props.addNewPost(values.newMyPost);
   };
-  
-  
+
   return (
     <div className={c.postsBloc}>
       <div>
         <h3>My posts</h3>
       </div>
       <div>
-        <MyPostsForm onSubmit={onAddNewPost} />        
+        <MyPostsForm onSubmit={onAddNewPost} />
       </div>
       <div className={c.posts}>
         {postsElements}
@@ -42,4 +38,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {addNewPost})(MyPosts);
+export default connect(mapStateToProps, { addNewPost })(MyPosts);

@@ -8,7 +8,8 @@ const Profile = (props) => {
 
   return (
     <div className={style.tape}>
-      <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
+      <ProfileInfo {...props}  pathUserId={props.match.params.userId}
+      />
       <MyPosts/>
     </div>
   )

@@ -1,16 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Friend from './Frend/Friend';
-import c from './Friends.module.css';
+import style from './Friends.module.css';
 
 const Friends = (props) => {
-  let friendsElements = props.friends.map(el => <Friend name={el.name} ava={el.ava} />);
+  // let friendsElements = props.friends.map(el => <Friend name={el.name} ava={el.ava} />);
 
   return (
-    <div className={c.friendsBloc}>
+    <div className={style.friendsBloc}>
       <div>Friends</div> 
-      <div className={c.friendBloc}>{friendsElements}</div>
+      <div className={style.friendBloc}></div>
     </div>
   )
 }
 
-export default Friends;
+
+let mapStateToProps = (state) => {
+  return {
+    friends: state.siteBar.friends
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (Friends);

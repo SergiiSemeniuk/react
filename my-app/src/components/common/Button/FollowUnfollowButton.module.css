@@ -1,0 +1,15 @@
+.followButton button {
+   
+    min-width: 100px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    background: darkcyan;
+    color: white;
+}
+
+.followButton button:hover {
+    background: transparent;
+    color: #222;
+    border-color: darkcyan;
+    cursor: pointer; 
+}

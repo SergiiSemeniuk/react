@@ -14,8 +14,7 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     }
-    onPageChanged = (pageNumber) => {
-        debugger
+    onPageChanged = (pageNumber) => {       
         this.props.requestUsers(pageNumber, this.props.pageSize);
     }
     render() {
@@ -26,7 +25,7 @@ class UsersContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

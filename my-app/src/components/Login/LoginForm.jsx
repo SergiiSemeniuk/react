@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { required } from '../../utils/validator';
 import { FormControl } from '../common/FormsControls/FormsControls';
@@ -6,10 +6,12 @@ import style from './../common/FormsControls/FormsControls.module.css';
 
 
 
-let LoginForm = (props) => {
+let LoginForm = ({handleSubmit, isCaptcha, captcha, error, isFetching}) => {
+    
+ 
  
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit} className={style.form}>
             <div>
                 <Field component={FormControl} placeholder={'email'} name={'email'} fieldType='input'
                     validate={[required]} />
@@ -23,21 +25,21 @@ let LoginForm = (props) => {
             </div>
             
             <div>
-                {props.isCaptcha && <div>
-                    <img src={props.captcha} />
+                {isCaptcha && <div>
+                    <img src={captcha} />
                     <div>
                         <Field component={FormControl} placeholder={'captcha'} name={'captcha'} fieldType='input'
-                            validate={[required]} />
+                            validate={[required]} autoFocus={true}  />
                     </div>
                 </div>}
             </div>
             <div>
-            {props.error && <div className={style.formCommonError}>
-                {props.error}
+            {error && <div className={style.formCommonError}>
+                {error}
             </div>}
             </div>
             <div>
-                <button disabled={props.isFetching}>Login</button>
+                <button disabled={isFetching}>Login</button>
             </div>
         </form>
     )

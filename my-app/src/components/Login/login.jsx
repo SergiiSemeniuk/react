@@ -12,9 +12,9 @@ const Login = (props) => {
   }
   if (props.isAuth) return <Redirect to='/profile' />
   return (
-    <div>
+    <div >
       <h2>Login</h2>
-      <LoginForm isFetching={props.isFetching} onSubmit={onSubmit} captcha={props.captcha} isCaptcha={props.isCaptcha} />
+      <LoginForm {...props} onSubmit={onSubmit} />
     </div>
   )
 }

@@ -1,9 +1,9 @@
 
 
-.img {
+/* .img {
     max-width: 100%;
     height: auto;
-}
+} */
 
 .descriptionBloc {
     padding: 10px;
@@ -16,11 +16,38 @@
 }
 
 .userName {
-    font-size:x-large;
+    font-size: x-large;
 }
 
-.userPhoto {
+
+.descriptionBloc img {
     width: 200px;
 }
 
+.contactBloc {
+    display: flex;
+    padding-top: 10px;
+    margin-left: -10px;
+}
 
+.contactBloc a{
+    color:azure;
+    text-decoration: none;
+    font-size: large;
+    
+}
+
+.contactBloc img {
+    width: 30px;
+    padding: 3px;
+}
+
+.lookingJobBloc img {
+ 
+    width: 80px;
+}
+
+.followButton button {
+    margin-left: 25%;    
+    
+}

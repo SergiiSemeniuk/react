@@ -2,13 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Header.module.css';
 import userPhoto from '../../assets/images/user-icon.png';
-import Preloader from '../common/preloader';
+import reasonLogo from '../../assets/images/react-logo.png';
+import UserPhoto from '../common/UserPhoto/UserPhoto';
 
 const Header = (props) => {
 
   return (
     <header className={style.header}>
-      <img src='https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png' alt='logo'></img>
+      <img className={style.headLogo} src={reasonLogo} alt='logo'></img>
       <div className={style.logoName}>
         ReaSoN
     </div>
@@ -16,11 +17,13 @@ const Header = (props) => {
         {props.isAuth && props.profile
           ? <div className={style.loginUserBlock}>
             <div>
-            <NavLink to={`/profile/${props.usersId}`} > {props.profile.fullName} </NavLink>
-            <button  onClick={() => props.logOutUser()}>Logout</button></div>
-            
-            <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} alt='userPhoto'></img>
+              <NavLink to={`/profile/${props.usersId}`} > {props.profile.fullName} </NavLink>
+              <button onClick={() => props.logOutUser()}>Logout</button></div>
+            <div className={style.userPhoto}>
+              <UserPhoto className={style.userPhoto} userPhoto={props.profile.photos.small} />
             </div>
+            {/* <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} alt='userPhoto'></img> */}
+          </div>
           : <NavLink to={'/login'} >Login</NavLink>
         }
 
