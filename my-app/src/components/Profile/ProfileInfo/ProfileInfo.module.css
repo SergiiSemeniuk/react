@@ -1,10 +1,5 @@
 
 
-/* .img {
-    max-width: 100%;
-    height: auto;
-} */
-
 .descriptionBloc {
     padding: 10px;
     display: grid;
@@ -18,7 +13,6 @@
 .userName {
     font-size: x-large;
 }
-
 
 .descriptionBloc img {
     width: 200px;
@@ -50,4 +44,8 @@
 .followButton button {
     margin-left: 25%;    
     
+}
+
+.status {
+    cursor: pointer;
 }

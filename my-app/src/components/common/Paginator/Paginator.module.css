@@ -3,3 +3,30 @@
     cursor: pointer;
     padding: 5px;
 }
+
+.paginator {
+    margin: 10px;
+}
+
+.paginator span{
+    padding: 2px;
+}
+
+.paginator button {
+   
+    min-width: min-content;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    background: darkcyan;
+    color: white;
+    outline: none;
+    
+}
+
+.paginator button:hover {
+    background: transparent;
+    color: #222;
+    border-color: darkcyan;
+    cursor: pointer; 
+}
+

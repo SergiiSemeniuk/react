@@ -2,14 +2,16 @@ import React from 'react';
 import c from './MyPosts.module.css';
 import Post from './Post/Post';
 import { connect } from 'react-redux';
-import { addNewPost } from '../../../redux/profileReducer';
+import { addNewPost, setUserPostLike } from '../../../redux/profileReducer';
 import MyPostsForm from './MyPostsForm';
 
 
 
 const MyPosts = (props) => {
- 
-  let postsElements = props.posts.map(el => <Post message={el.message} likeCount={el.likesCount} key={el.id} />);
+
+  let postsElements = props.posts.map(el => <Post message={el.message} 
+    likeCount={el.likesCount} id={el.id}
+    setUserPostLike={props.setUserPostLike} />);
 
   let onAddNewPost = (values) => {
     props.addNewPost(values.newMyPost);
@@ -38,4 +40,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { addNewPost })(MyPosts);
+export default connect(mapStateToProps, { addNewPost, setUserPostLike })(MyPosts);

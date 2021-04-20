@@ -21,8 +21,7 @@ const Header = (props) => {
               <button onClick={() => props.logOutUser()}>Logout</button></div>
             <div className={style.userPhoto}>
               <UserPhoto className={style.userPhoto} userPhoto={props.profile.photos.small} />
-            </div>
-            {/* <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} alt='userPhoto'></img> */}
+            </div>           
           </div>
           : <NavLink to={'/login'} >Login</NavLink>
         }

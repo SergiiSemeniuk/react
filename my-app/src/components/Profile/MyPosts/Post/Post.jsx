@@ -1,17 +1,25 @@
 import React from 'react';
-import c from './Post.module.css';
+import UserPhoto from '../../../common/UserPhoto/UserPhoto';
+import style from './Post.module.css';
+import reactLike from '../../../../assets/images/react-logo.png'
 
 const Post = (props) => {
+
+  const upLike = () => {
+    return props.setUserPostLike(props.id);
+  }
+  
   return (
-  <div>
-    <div className={c.item}>
-      <img alt='my ava' src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTop3kx-V5ughLRERDUZNsZVhvbF2oxNDD6Q&usqp=CAU"></img>
-      {props.message}
+    <div key={props.id}>
+      <div className={style.item}>
+        <UserPhoto />
+        {props.message}
+      </div>
+      <div className={style.likeBloc}>
+        <div className={style.like} >Like {props.likeCount}</div>
+        <img src={reactLike} className={style.likeIcon} onClick={() => upLike()} />
+      </div>
     </div>
-    <div>
-  <span className={c.like}>Like {props.likeCount}</span>
-    </div>
-  </div>
   )
 }
 

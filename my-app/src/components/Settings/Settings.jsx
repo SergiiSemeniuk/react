@@ -2,14 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { logOutUser } from './../../redux/authReducer'
-import c from './Settings.module.css';
+import style from './Settings.module.css';
 
 const Settings = (props) => {
 
   return (
-    <div>     
+    <div className={style.settingBloc}>     
       <h2>Settings</h2> 
       <div>
+        Change photo
+      </div>
+      <div className={style.exitBloc}>
+        Exit -- 
         <button onClick={() => props.logOutUser()}>Logout</button>
       </div>
     </div>

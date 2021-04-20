@@ -7,7 +7,7 @@
   "n c"
   "f f";
 
-  grid-template-rows: min-content min-content min-content;
+  grid-template-rows: min-content min-content 7%;
   grid-template-columns: 1fr 7fr;
   grid-gap: 5px;
   background-color: rgb(212, 211, 211);

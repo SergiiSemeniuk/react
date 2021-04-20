@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const IS_USER_FOLLOWED = 'IS_USER_FOLLOWED';
+const SET_USER_POST_LIKE = 'SET_USER_POST_LIKE';
 
 let initialState = {
     posts: [
@@ -21,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
 
         case ADD_POST:
             let newPost = {
-                id: 3,
+                id: Math.max(...state.posts.map(el => el.id + 1).values()),
                 message: action.newMyPost,
                 likesCount: 0
             };
@@ -39,10 +40,21 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 userStatus: action.status
             };
-            case IS_USER_FOLLOWED:
+        case IS_USER_FOLLOWED:
             return {
                 ...state,
                 isFollowed: action.isFollowed
+            };
+        case SET_USER_POST_LIKE:        
+            return {
+                ...state,
+                posts: [...state.posts.map(el => {
+                    if (el.id === action.postId) {
+                        el.likesCount = el.likesCount + 1;
+                        return el;
+                    }
+                    return el;
+                })]               
             };
         default:
             return state;
@@ -53,6 +65,8 @@ export const addNewPost = (newMyPost) => ({ type: ADD_POST, newMyPost });
 const setUsersProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
 const setIsFollowedUser = (isFollowed) => ({ type: IS_USER_FOLLOWED, isFollowed });
+export const setUserPostLike = (postId) => ({ type: SET_USER_POST_LIKE, postId });
+
 
 export const getUserProfile = (userId) => async (dispatch) => {
     const response = await profileAPI.getProfile(userId);
@@ -71,11 +85,11 @@ export const updateUserStatus = (status) => async (dispatch) => {
     }
 }
 
-export const getIsFollowedUser = (userId) => (dispatch) => {  
-    profileAPI.isFollowedUser(userId).then((response)=>{       
-        dispatch(setIsFollowedUser(response));     
+export const getIsFollowedUser = (userId) => (dispatch) => {
+    profileAPI.isFollowedUser(userId).then((response) => {
+        dispatch(setIsFollowedUser(response));
     })
-    
+
 }
 
 

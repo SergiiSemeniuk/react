@@ -6,7 +6,7 @@ import FollowUnfollowButton from '../common/Button/FollowUnfollowButton';
 
 
 let User = ({ user, isAuth, followingInProgress, unfollow, follow }) => {
-debugger
+
     return (
         <div className={style.usersPage} >
             <div className={style.userProfile} >

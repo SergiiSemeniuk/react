@@ -35,7 +35,7 @@ const ProfileInfo = ({ profile, isAuth, status, updateUserStatus, pathUserId, au
         </div>
         <div className={style.userInfo}>
           <div className={style.userName}>{profile.fullName}</div>
-          <div><ProfileStatus isAuth={isAuth} status={status}
+          <div className={style.status}><ProfileStatus isAuth={isAuth} status={status}
             updateUserStatus={updateUserStatus} pathUserId={pathUserId}
             authorizedUserId={authorizedUserId}
           />

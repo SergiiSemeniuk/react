@@ -9,5 +9,15 @@
 }
 
 .like {
+ margin-top: 5px;
   color: rgba(214, 26, 26, 0.61);
+}
+
+.likeIcon {
+ width: 30px;
+ cursor: pointer;
+}
+
+.likeBloc {
+  display: flex;
 }

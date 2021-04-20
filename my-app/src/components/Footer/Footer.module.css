@@ -2,11 +2,24 @@
   grid-area: f;
   background-color: rgb(24, 24, 24);
   color: azure;
-  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  }
+  /* .footer div {
+    margin-top: 2%;
+  } */
+
+  .author div {
+    float:right;
+    margin-right: 5%;
+  }
+  .clock {
+    margin-left: 5%;
   }
 
-.footer div {
-    margin: 10px;
-    text-align: right;
-  }
+
+
+ 
+ 
  
