@@ -16,9 +16,9 @@ const Contacts = ({ contacts }) => {
 
   let contact = Object.entries(contacts).map(([socialNetwork, url]) => {
     if (!url) {
-      return <div></div>
+      return <div key={socialNetwork}></div>
     }
-    return <div>
+    return <div key={socialNetwork}>
       <a href={url} target='blank'>
         <img src={icons[socialNetwork]}  />
       </a>

@@ -60,6 +60,14 @@ export const profileAPI = {
     isFollowedUser(userId) {
         return instance.get(`follow/${userId}`)
             .then(response => response.data);
+    },
+    setMainPhoto(image) {
+        const formData = new FormData();
+        formData.append('image', image);
+        return instance.put(`/profile/photo`, formData);
+    },
+    putProfile(profile) {
+        return instance.put(`profile`, profile );            
     }
 
 }

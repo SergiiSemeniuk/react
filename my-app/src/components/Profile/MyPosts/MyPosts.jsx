@@ -9,9 +9,10 @@ import MyPostsForm from './MyPostsForm';
 
 const MyPosts = (props) => {
 
-  let postsElements = props.posts.map(el => <Post message={el.message} 
+  let postsElements = props.posts.map(el => <Post key={el.id} message={el.message} 
     likeCount={el.likesCount} id={el.id}
-    setUserPostLike={props.setUserPostLike} />);
+    setUserPostLike={props.setUserPostLike}
+    profile={props.profile} />);
 
   let onAddNewPost = (values) => {
     props.addNewPost(values.newMyPost);
@@ -33,9 +34,11 @@ const MyPosts = (props) => {
 }
 
 let mapStateToProps = (state) => {
+  
   return {
     posts: state.profilePage.posts,
-    newPostText: state.profilePage.newPostText
+    newPostText: state.profilePage.newPostText,
+    profile: state.profilePage.profile
   }
 }
 

@@ -12,7 +12,7 @@ const Post = (props) => {
   return (
     <div key={props.id}>
       <div className={style.item}>
-        <UserPhoto />
+        <UserPhoto key={props.id}  userPhoto={props.profile.photos.small} />
         {props.message}
       </div>
       <div className={style.likeBloc}>

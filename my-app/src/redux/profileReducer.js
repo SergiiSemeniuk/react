@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
@@ -5,6 +6,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const IS_USER_FOLLOWED = 'IS_USER_FOLLOWED';
 const SET_USER_POST_LIKE = 'SET_USER_POST_LIKE';
+const SET_USER_PHOTOS = 'SET_USER_PHOTOS';
 
 let initialState = {
     posts: [
@@ -13,7 +15,7 @@ let initialState = {
     ],
     profile: null,
     userStatus: '',
-    isFollowed: null
+    isFollowed: null 
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -45,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 isFollowed: action.isFollowed
             };
-        case SET_USER_POST_LIKE:        
+        case SET_USER_POST_LIKE:
             return {
                 ...state,
                 posts: [...state.posts.map(el => {
@@ -54,7 +56,16 @@ const profileReducer = (state = initialState, action) => {
                         return el;
                     }
                     return el;
-                })]               
+                })]
+            };
+        case SET_USER_PHOTOS:
+            debugger
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.userPhotos
+                }
             };
         default:
             return state;
@@ -66,6 +77,7 @@ const setUsersProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
 const setIsFollowedUser = (isFollowed) => ({ type: IS_USER_FOLLOWED, isFollowed });
 export const setUserPostLike = (postId) => ({ type: SET_USER_POST_LIKE, postId });
+const setUserPhotos = (userPhotos) => ({ type: SET_USER_PHOTOS, userPhotos });
 
 
 export const getUserProfile = (userId) => async (dispatch) => {
@@ -90,6 +102,29 @@ export const getIsFollowedUser = (userId) => (dispatch) => {
         dispatch(setIsFollowedUser(response));
     })
 
+}
+
+export const savePhoto = (image) => async (dispatch) => {   
+    const response = await profileAPI.setMainPhoto(image);
+    if (response.data.resultCode === 0) {
+        dispatch(setUserPhotos(response.data.data.photos));
+    }
+}
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    debugger
+    const userId = getState().auth.usersId;
+    
+    const response = await profileAPI.putProfile(profile);
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId));
+    }
+    if (response.data.resultCode === 1) {        
+        dispatch(stopSubmit('profileFormData', { _error: response.data.messages[0] }));
+        return Promise.reject();
+    }
+
+    
 }
 
 

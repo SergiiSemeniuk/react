@@ -2,11 +2,13 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import { getUserProfile, getUserStatus, updateUserStatus, getIsFollowedUser } from '../../redux/profileReducer';
+import { savePhoto, getUserProfile, getUserStatus, 
+  updateUserStatus, getIsFollowedUser, saveProfile } from '../../redux/profileReducer';
 import { compose } from 'redux';
 import { getIsAuth } from '../../redux/auth-selectors';
 import { follow, unfollow} from '../../redux/usersReducer';
 import { getFollowingInProgress, getUsers } from '../../redux/users-selectors';
+import Preloader from '../common/preloader';
 
 
 class ProfileContainer extends React.Component {
@@ -42,9 +44,12 @@ class ProfileContainer extends React.Component {
 
       return <Redirect to='login' />
     }
+    if (!this.props.profile) {
+      return <Preloader/>
+    }
     return (
       <div >
-        <Profile {...this.props} />
+        <Profile {...this.props}  />
       </div>
     )
   }
@@ -62,6 +67,7 @@ let mapStateToProps = (state) => ({
 });
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, getIsFollowedUser, follow, unfollow }),
+  connect(mapStateToProps, { getUserProfile, getUserStatus, savePhoto, 
+    updateUserStatus, getIsFollowedUser, follow, unfollow, saveProfile }),
   withRouter
 )(ProfileContainer)

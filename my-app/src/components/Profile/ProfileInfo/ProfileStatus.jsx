@@ -32,8 +32,8 @@ let ProfileStatus = (props) => {
       {!editMode ?
         <div>
           {(!props.isAuth || props.pathUserId != props.authorizedUserId)
-          ? <span >{props.status || '----'}</span>
-          : <span onClick={activateMode} >{props.status || '----'}</span>
+          ? <div> <b>Status:</b> <span >{props.status || '----'}</span></div>
+          : <div><b>Status:</b> <span onClick={activateMode} >{props.status || '----'}</span></div>
           }
          
         </div>

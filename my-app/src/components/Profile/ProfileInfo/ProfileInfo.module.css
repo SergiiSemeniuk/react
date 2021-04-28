@@ -3,7 +3,7 @@
 .descriptionBloc {
     padding: 10px;
     display: grid;
-    grid-template-columns: 2fr 10fr 10fr;
+    grid-template-columns: 2fr 10fr 10fr 1fr;
 }
 
 .userInfo {
@@ -48,4 +48,29 @@
 
 .status {
     cursor: pointer;
+}
+
+.inputFile {
+    display: none;
+}
+
+.photoUploadBlock{
+    margin: 2%;
+}
+
+.photoUploadButton{
+    font-size: x-small;
+    padding: 2%;    
+    border: 2px solid transparent;
+    border-radius: 100px;
+    background: darkcyan;
+    color: white;
+    
+}
+
+.photoUploadButton:hover {
+    background: transparent;
+    color: #222;
+    border-color: darkcyan;
+    cursor: pointer; 
 }

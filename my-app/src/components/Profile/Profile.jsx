@@ -8,9 +8,12 @@ const Profile = (props) => {
 
   return (
     <div className={style.tape}>
-      <ProfileInfo {...props}  pathUserId={props.match.params.userId}
+      <ProfileInfo {...props}
+        pathUserId={props.match.params.userId}
+        isOwner={props.match.params.userId == props.authorizedUserId
+          || props.isAuth && props.authorizedUserId && !props.match.params.userId}
       />
-      <MyPosts/>
+      <MyPosts />
     </div>
   )
 }

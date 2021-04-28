@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader';
-import userPhoto from '../../../assets/images/user-icon.png';
 import ProfileStatus from './ProfileStatus';
-import Contacts from './Contacts';
 import FollowUnfollowButton from '../../common/Button/FollowUnfollowButton';
 import UserPhoto from '../../common/UserPhoto/UserPhoto';
+import ProfileData from './ProfileData';
+import ProfileFormData from './ProfileFormData';
 
 
 const ProfileInfo = ({ profile, isAuth, status, updateUserStatus, pathUserId, authorizedUserId,
-  isFollowed, unfollow, follow, followingInProgress }) => {
+  isFollowed, unfollow, follow, followingInProgress, isOwner, savePhoto, saveProfile }) => {
 
-
+  const [editMode, setEditMode] = useState(false);
   if (!profile) {
     return <Preloader />
+  }
+  const onManePhotoSelected = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  }
+  const onSubmit = (formData) => {  
+    saveProfile(formData).then(()=>{
+      setEditMode(false);
+    })
+    
   }
 
   return (
@@ -21,36 +32,31 @@ const ProfileInfo = ({ profile, isAuth, status, updateUserStatus, pathUserId, au
       <div className={style.descriptionBloc}>
         <div>
           <UserPhoto userPhoto={profile.photos.large} />
+          <div className={style.status}>
+            <ProfileStatus isAuth={isAuth} status={status}
+              updateUserStatus={updateUserStatus} pathUserId={pathUserId}
+              authorizedUserId={authorizedUserId} />
+          </div>
           <div className={style.followButton}>
-            {pathUserId == authorizedUserId || isAuth && authorizedUserId && !pathUserId
-              ? <div></div>
+            {isOwner
+              ? <div className={style.photoUploadBlock}>
+                <input className={style.inputFile} id='inputFile' type={'file'} onChange={onManePhotoSelected} />
+                <label htmlFor='inputFile' className={style.photoUploadButton}>Upload photo</label>
+              </div>
               : <FollowUnfollowButton isAuth={isAuth} isFollowed={isFollowed}
                 userId={profile.userId} followingInProgress={followingInProgress}
                 unfollow={unfollow}
                 follow={follow}
-                pathUserId={pathUserId}
-                authorizedUserId={authorizedUserId} />
+              />
             }
           </div>
         </div>
-        <div className={style.userInfo}>
-          <div className={style.userName}>{profile.fullName}</div>
-          <div className={style.status}><ProfileStatus isAuth={isAuth} status={status}
-            updateUserStatus={updateUserStatus} pathUserId={pathUserId}
-            authorizedUserId={authorizedUserId}
-          />
-          </div>
-          <div>{profile.aboutMe}</div>
-          <div>{profile.lookingForAJob ?
-            <div className={style.lookingJobBloc}>
-              <div>{profile.lookingForAJobDescription}</div>
-              <img src='https://image.flaticon.com/icons/png/128/2890/2890347.png' />
-            </div> : null}
-          </div>
-        </div>
-        <div>
-          <Contacts contacts={profile.contacts} />
-        </div>
+        {editMode
+        ? <ProfileFormData initialValues={profile} profile={profile} onSubmit={onSubmit} />
+        :<ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=>setEditMode(true)} />
+        }
+       
+        
       </div>
     </div>
 
@@ -58,5 +64,3 @@ const ProfileInfo = ({ profile, isAuth, status, updateUserStatus, pathUserId, au
 }
 
 export default ProfileInfo;
-
-
